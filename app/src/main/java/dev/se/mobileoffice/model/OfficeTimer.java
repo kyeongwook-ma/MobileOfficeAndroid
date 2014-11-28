@@ -1,4 +1,4 @@
-package model;
+package dev.se.mobileoffice.model;
 
 /**
  * Created by makyungjae on 2014. 11. 5..
@@ -23,9 +23,16 @@ public class OfficeTimer {
     }
 
     private OfficeTimer() {
-        while(isStart) {
-            ++time;
-        }
+
+        new Thread() {
+            @Override
+            public void run() {
+                while(isStart) {
+                    ++time;
+                }
+            }
+        }.start();
+
     }
 
     public void start() {

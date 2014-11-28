@@ -1,7 +1,9 @@
-package model.cell;
+package dev.se.mobileoffice.model.cell;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import dev.se.mobileoffice.model.cell.OfficeCell;
 
 /**
  * Created by makyungjae on 2014. 11. 5..
