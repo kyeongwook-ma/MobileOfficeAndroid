@@ -58,5 +58,12 @@ public class MainActivity extends Activity {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             return rootView;
         }
+
+        private void initView() {
+
+
+
+        }
+
     }
 }
