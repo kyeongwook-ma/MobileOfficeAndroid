@@ -1,10 +1,15 @@
 package dev.se.mobileoffice.model.cell;
 
+import android.view.View;
+import android.widget.LinearLayout;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import dev.se.mobileoffice.R;
 import dev.se.mobileoffice.model.cell.OfficeCell;
+import dev.se.mobileoffice.model.cell.agent.AirConditioner;
 import dev.se.mobileoffice.view.IDrawService;
 
 /**
@@ -36,8 +41,12 @@ public class CellManager {
                             .temperature(23 + new Random().nextInt(2)).createOfficeCell();
 
             cells.add(cell);
-
         }
+
+
+        OfficeCell cell = cells.get(3);
+        cell.addAgent(new AirConditioner(R.drawable.aircon, cell.getEnvironment()));
+
     }
 
     public static CellManager getInstance() {

@@ -8,7 +8,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridLayout;
+import android.widget.LinearLayout;
 
+import dev.se.mobileoffice.model.cell.CellManager;
+import dev.se.mobileoffice.view.CellView;
 
 
 public class MainActivity extends Activity {
@@ -56,14 +60,19 @@ public class MainActivity extends Activity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+
+            GridLayout mainFrame = (GridLayout)container.findViewById(R.id.gr_center);
+
+            CellView cellView = new CellView();
+
+            for(LinearLayout ll : cellView.getAllCellsView()) {
+                mainFrame.addView(ll);
+            }
+
             return rootView;
         }
 
-        private void initView() {
 
-
-
-        }
 
     }
 }

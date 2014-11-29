@@ -5,23 +5,35 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import dev.se.mobileoffice.MobileOfficeApp;
 import dev.se.mobileoffice.model.cell.CellManager;
 import dev.se.mobileoffice.model.cell.OfficeCell;
 
 /**
  * Created by Dev on 2014-11-29.
  */
-public class CellView extends LinearLayout {
+public class CellView {
 
-    public CellView(Context context) {
-        super(context);
+    public CellView() {
+
+    }
+
+    public List<LinearLayout> getAllCellsView() {
+
+        List<LinearLayout> layouts = new ArrayList<LinearLayout>();
 
         for(int i = 0; i < CellManager.getInstance().size(); ++i) {
             IDrawService officeCell = CellManager.getInstance().get(i);
-            addView(officeCell.drawView());
+            LinearLayout ll = new LinearLayout(MobileOfficeApp.getContext());
+
+            ll.addView(officeCell.drawView());
+
+            layouts.add(ll);
         }
 
+        return layouts;
     }
 
 }

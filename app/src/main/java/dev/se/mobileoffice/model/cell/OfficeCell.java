@@ -3,6 +3,7 @@ package dev.se.mobileoffice.model.cell;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dev.se.mobileoffice.MobileOfficeApp;
@@ -21,6 +22,7 @@ public class OfficeCell implements IDrawService {
     public OfficeCell(int cellId, CellEnvironment env) {
         this.cellId = cellId;
         this.env = env;
+        this.agents = new ArrayList<Agent>();
     }
 
 
@@ -34,6 +36,14 @@ public class OfficeCell implements IDrawService {
         }
 
         return ll;
+    }
+
+    public void addAgent(Agent agent) {
+        agents.add(agent);
+    }
+
+    public CellEnvironment getEnvironment() {
+        return env;
     }
 
     public static class OfficeCellBuilder {
