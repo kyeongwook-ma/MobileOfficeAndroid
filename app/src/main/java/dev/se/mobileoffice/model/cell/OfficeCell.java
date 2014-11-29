@@ -1,135 +1,83 @@
 package dev.se.mobileoffice.model.cell;
 
+import android.view.View;
+import android.widget.LinearLayout;
+
+import java.util.List;
+
+import dev.se.mobileoffice.MobileOfficeApp;
+import dev.se.mobileoffice.model.cell.agent.Agent;
+import dev.se.mobileoffice.view.IDrawService;
+
 /**
  * Created by makyungjae on 2014. 11. 5..
  */
-public class OfficeCell {
+public class OfficeCell implements IDrawService {
 
     protected int cellId;
+    protected CellEnvironment env;
+    private List<Agent> agents;
 
-    protected double noise;
-    protected double temperature;
-    protected double humidity;
-    protected double computingPower;
-    protected double networkBandwidth;
-    protected boolean hasWindow;
-
-    public int getCellId() {
-        return cellId;
-    }
-
-    public double getNoise() {
-        return noise;
-    }
-
-    public void setNoise(double noise) {
-        this.noise = noise;
-    }
-
-    public double getTemperature() {
-        return temperature;
-    }
-
-    public void setTemperature(double temperature) {
-        this.temperature = temperature;
-    }
-
-    public double getHumidity() {
-        return humidity;
-    }
-
-    public void setHumidity(double humidity) {
-        this.humidity = humidity;
-    }
-
-    public double getComputingPower() {
-        return computingPower;
-    }
-
-    public void setComputingPower(double computingPower) {
-        this.computingPower = computingPower;
-    }
-
-    public double getNetworkBandwidth() {
-        return networkBandwidth;
-    }
-
-    public void setNetworkBandwidth(double networkBandwidth) {
-        this.networkBandwidth = networkBandwidth;
-    }
-
-    public boolean isHasWindow() {
-        return hasWindow;
-    }
-
-    public void setHasWindow(boolean hasWindow) {
-        this.hasWindow = hasWindow;
-    }
-
-    public OfficeCell(int cellId, double noise, double temperature,
-                      double humidity, double computingPower,
-                      double networkBandwidth, boolean hasWindow) {
+    public OfficeCell(int cellId, CellEnvironment env) {
         this.cellId = cellId;
-        this.noise = noise;
-        this.temperature = temperature;
-        this.humidity = humidity;
-        this.computingPower = computingPower;
-        this.networkBandwidth = networkBandwidth;
-        this.hasWindow = hasWindow;
+        this.env = env;
     }
 
 
-    public double getCost() {
-        return 0;
+    @Override
+    public View drawView() {
+
+        LinearLayout ll = new LinearLayout(MobileOfficeApp.getContext());
+
+        for(Agent agent : agents) {
+            ll.addView(agent.drawView());
+        }
+
+        return ll;
     }
 
     public static class OfficeCellBuilder {
-        private int cellId;
-        private double noise;
-        private double temperature;
-        private double humidity;
-        private double computingPower;
-        private double networkBandwidth;
-        private boolean hasWindow;
+
+        CellEnvironment env;
+        protected int cellId;
 
         public OfficeCellBuilder(int id) {
             this.cellId = id;
+            this.env = new CellEnvironment();
         }
 
         public OfficeCellBuilder noise(double noise) {
-            this.noise = noise;
+            env.setNoise(noise);
             return this;
         }
 
         public OfficeCellBuilder temperature(double temperature) {
-            this.temperature = temperature;
+            env.setTemperature(temperature);
             return this;
         }
 
         public OfficeCellBuilder humidity(double humidity) {
-            this.humidity = humidity;
+            env.setHumidity(humidity);
             return this;
         }
 
         public OfficeCellBuilder computingPower(double computingPower) {
-            this.computingPower = computingPower;
+            env.setComputingPower(computingPower);
             return this;
         }
 
         public OfficeCellBuilder networkBandwidth(double networkBandwidth) {
-            this.networkBandwidth = networkBandwidth;
+            env.setNetworkBandwidth(networkBandwidth);
             return this;
         }
 
         public OfficeCellBuilder hasWindow(boolean hasWindow) {
-            this.hasWindow = hasWindow;
+            env.setHasWindow(hasWindow);
             return this;
         }
 
         public OfficeCell createOfficeCell() {
-            return new OfficeCell(this.cellId, this.noise, this.temperature,
-                    this.humidity, this.computingPower,
-                    this.networkBandwidth, this.hasWindow);
+            return new OfficeCell(this.cellId, this.env);
         }
 
 

@@ -1,22 +1,25 @@
 package dev.se.mobileoffice.model.cell;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import dev.se.mobileoffice.model.cell.OfficeCell;
+import dev.se.mobileoffice.view.IDrawService;
 
 /**
  * Created by makyungjae on 2014. 11. 5..
  */
 public class CellManager {
 
-    public static final int MAX_CELL_COUNT = 16;
-    private ArrayList<OfficeCell> cells;
+    private static final int MAX_CELL_COUNT = 16;
+    private List<OfficeCell> cells;
     private static CellManager instance;
 
     static  {
         instance = new CellManager();
     }
+
 
     private CellManager() {
         cells = new ArrayList<OfficeCell>();
@@ -37,12 +40,16 @@ public class CellManager {
         }
     }
 
-    public CellManager getInstance() {
+    public static CellManager getInstance() {
         if(instance != null) {
             return instance;
         } else {
             return new CellManager();
         }
+    }
+
+    public int size() {
+        return MAX_CELL_COUNT;
     }
 
     public OfficeCell get(int idx) {
