@@ -41,10 +41,10 @@ public class CellManager {
 
 
         OfficeCell cell = cells.get(3);
-        cell.addAgent(new AirConditioner(R.drawable.aircon, cell.getEnvironment()));
+        cell.addAgent(new AirConditioner(3, R.drawable.aircon, cell.getEnvironment()));
 
         OfficeCell cell2 = cells.get(0);
-        cell2.addAgent(new LightController(R.drawable.bulb, cell2.getEnvironment()));
+        cell2.addAgent(new LightController(0, R.drawable.bulb, cell2.getEnvironment()));
 
 
     }

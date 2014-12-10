@@ -7,8 +7,8 @@ import dev.se.mobileoffice.model.cell.CellEnvironment;
  */
 public class LightController extends Agent{
 
-    public LightController(int imgId, CellEnvironment env) {
-        super(imgId, env);
+    public LightController(int cellId, int imgId, CellEnvironment env) {
+        super(cellId, imgId, env);
     }
 
     @Override

@@ -9,13 +9,15 @@ import dev.se.mobileoffice.model.cell.CellEnvironment;
 public class AirConditioner extends Agent {
 
 
-    public AirConditioner(int imgId, CellEnvironment env) {
-        super(imgId, env);
+    public AirConditioner(int cellId, int imgId, CellEnvironment env) {
+        super(cellId, imgId, env);
 
     }
 
     @Override
     public void operate() {
+
+
 
     }
 

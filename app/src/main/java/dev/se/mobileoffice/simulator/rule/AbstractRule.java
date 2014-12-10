@@ -5,10 +5,7 @@ package dev.se.mobileoffice.simulator.rule;
  */
 public abstract class AbstractRule {
 
+    protected int elapsedTime;
 
-
-
-    public Object visit(AirconditionorRule node, Object data) {
-        return visit(node, data);
-    }
+    public abstract void check();
 }

@@ -36,6 +36,10 @@ public class Simulator {
         cell.setEnvironment(env);
     }
 
-
+    public void checkRules() {
+        for(AbstractRule rule : rules) {
+            rule.check();
+        }
+    }
 
 }
