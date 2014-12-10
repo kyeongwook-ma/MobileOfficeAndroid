@@ -1,24 +1,16 @@
 package dev.se.mobileoffice.simulator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import dev.se.mobileoffice.model.cell.CellEnvironment;
 import dev.se.mobileoffice.model.cell.CellManager;
 import dev.se.mobileoffice.model.cell.OfficeCell;
 import dev.se.mobileoffice.model.cell.agent.Agent;
-import dev.se.mobileoffice.simulator.rule.AbstractRule;
 
 /**
  * Created by se on 2014-12-10.
  */
 public class Simulator {
-
-    private List<AbstractRule> rules;
-
-    public Simulator() {
-        rules = new ArrayList<AbstractRule>();
-    }
 
     public void operateAgent(int cellId, int agentId) {
         List<Agent> agents = CellManager.getInstance().get(cellId).getAgents();
@@ -36,10 +28,5 @@ public class Simulator {
         cell.setEnvironment(env);
     }
 
-    public void checkRules() {
-        for(AbstractRule rule : rules) {
-            rule.check();
-        }
-    }
 
 }
