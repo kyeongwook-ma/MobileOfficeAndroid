@@ -1,6 +1,4 @@
 MobileOfficeAndroid
 ===================
 
-Project status
-
-https://travis-ci.org/shwarzes89/MobileOfficeAndroid.svg
+[![Build Status](https://travis-ci.org/shwarzes89/MobileOfficeAndroid.svg?branch=master)](https://travis-ci.org/shwarzes89/MobileOfficeAndroid)
