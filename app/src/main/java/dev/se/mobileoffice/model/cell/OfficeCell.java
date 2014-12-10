@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dev.se.mobileoffice.MobileOfficeApp;
+import dev.se.mobileoffice.IDrawService;
 import dev.se.mobileoffice.model.cell.agent.Agent;
-import dev.se.mobileoffice.view.IDrawService;
 
 /**
  * Created by makyungjae on 2014. 11. 5..
@@ -18,6 +18,12 @@ public class OfficeCell implements IDrawService {
     protected int cellId;
     protected CellEnvironment env;
     private List<Agent> agents;
+
+
+    public List<Agent> getAgents() {
+        assert agents != null;
+        return agents;
+    }
 
     public OfficeCell(int cellId, CellEnvironment env) {
         this.cellId = cellId;
@@ -31,8 +37,10 @@ public class OfficeCell implements IDrawService {
 
         LinearLayout ll = new LinearLayout(MobileOfficeApp.getContext());
 
-        for(Agent agent : agents) {
-            ll.addView(agent.drawView());
+        if(agents.size() > 0) {
+            for(Agent agent : agents) {
+                ll.addView(agent.drawView());
+            }
         }
 
         return ll;
@@ -44,6 +52,10 @@ public class OfficeCell implements IDrawService {
 
     public CellEnvironment getEnvironment() {
         return env;
+    }
+
+    public void setEnvironment(CellEnvironment env) {
+        this.env = env;
     }
 
     public static class OfficeCellBuilder {

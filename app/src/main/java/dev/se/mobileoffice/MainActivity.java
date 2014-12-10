@@ -3,6 +3,7 @@ package dev.se.mobileoffice;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
 
-import dev.se.mobileoffice.model.cell.CellManager;
 import dev.se.mobileoffice.view.CellView;
 
 
@@ -61,7 +61,15 @@ public class MainActivity extends Activity {
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-            GridLayout mainFrame = (GridLayout)container.findViewById(R.id.gr_center);
+            GridLayout mainFrame = (GridLayout)rootView.findViewById(R.id.gr_center);
+
+            GridLayout.LayoutParams param = new GridLayout.LayoutParams();
+            param.height = 60;
+            param.width = 60;
+            param.setGravity(Gravity.CENTER);
+            param.columnSpec = GridLayout.spec(3);
+            param.rowSpec = GridLayout.spec(3);
+            mainFrame.setLayoutParams(param);
 
             CellView cellView = new CellView();
 

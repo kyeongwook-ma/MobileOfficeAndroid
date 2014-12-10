@@ -1,9 +1,7 @@
 package dev.se.mobileoffice.model.cell.agent;
 
-import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ViewSwitcher;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,14 +10,16 @@ import dev.se.mobileoffice.MobileOfficeApp;
 import dev.se.mobileoffice.model.OfficeTimer;
 import dev.se.mobileoffice.model.cell.CellEnvironment;
 import dev.se.mobileoffice.model.cell.agent.sensor.ISensor;
-import dev.se.mobileoffice.view.IDrawService;
+import dev.se.mobileoffice.IDrawService;
 
 /**
  * Created by makyungjae on 2014. 11. 5..
  */
 public abstract class Agent implements IDrawService {
 
-    private int currTime;
+    private int operatingTime;
+
+    private int id;
     protected boolean isRunning;
     private List<ISensor> sensors;
     private int imgId;
@@ -31,13 +31,22 @@ public abstract class Agent implements IDrawService {
         this.env = env;
         this.sensors = new ArrayList<ISensor>();
 
-        currTime = OfficeTimer.getInstance().getTime();
+        operatingTime = OfficeTimer.getInstance().getTime();
 
-        while(OfficeTimer.getInstance().getTime() - currTime > 10) {
+        while(OfficeTimer.getInstance().getTime() -  operatingTime > 10) {
             operate();
         }
 
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 
     public void addSensor(ISensor sensor) {
 
@@ -61,7 +70,11 @@ public abstract class Agent implements IDrawService {
     @Override
     public View drawView() {
         assert imgId != 0;
-        return new View(MobileOfficeApp.getContext()).findViewById(imgId);
+        ImageView iv = new ImageView(MobileOfficeApp.getContext());
+        iv.setImageResource(imgId);
+        iv.setScaleX(0.2f);
+        iv.setScaleY(0.2f);
+        return iv;
     }
 
     protected abstract double getCost();

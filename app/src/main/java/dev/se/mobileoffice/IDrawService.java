@@ -1,4 +1,4 @@
-package dev.se.mobileoffice.view;
+package dev.se.mobileoffice;
 
 import android.view.View;
 

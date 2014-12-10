@@ -1,16 +1,12 @@
 package dev.se.mobileoffice.model.cell;
 
-import android.view.View;
-import android.widget.LinearLayout;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import dev.se.mobileoffice.R;
-import dev.se.mobileoffice.model.cell.OfficeCell;
 import dev.se.mobileoffice.model.cell.agent.AirConditioner;
-import dev.se.mobileoffice.view.IDrawService;
+import dev.se.mobileoffice.model.cell.agent.LightController;
 
 /**
  * Created by makyungjae on 2014. 11. 5..
@@ -46,6 +42,10 @@ public class CellManager {
 
         OfficeCell cell = cells.get(3);
         cell.addAgent(new AirConditioner(R.drawable.aircon, cell.getEnvironment()));
+
+        OfficeCell cell2 = cells.get(0);
+        cell2.addAgent(new LightController(R.drawable.bulb, cell2.getEnvironment()));
+
 
     }
 
